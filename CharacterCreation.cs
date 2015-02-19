@@ -4,6 +4,37 @@ using UnityEngine.UI;
 
 public class CharacterCreation : MonoBehaviour {
 
+	//-----------------------------------------------Base buttons------------------------------------------------------
+	public Image raceButton;
+	public Text raceButtonText;
+	public Image genderButton;
+	public Text genderButtonText;
+	public Image headButton;
+	public Text headButtonText;
+	public Image torsoButton;
+	public Text torsoButtonText;
+	public Image legsButton;
+	public Text legsButtonText;
+	public Image featuresButton;
+	public Text featuresButtonText;
+
+	//----------------------------------------------Base panel controllers----------------------------------------------
+	//Race controllers
+	public Image raceBackgroundPanel;
+	public Image raceButtonHuman;
+	public Text raceButtonHumanText;
+
+	//Gender controllers
+	public Image genderBackgroundPanel;
+	public Image genderButtonMale;
+	public Text genderButtonMaleText;
+	public Image genderButtonFemale;
+	public Text genderButtonFemaleText;
+
+	//character Creation player set variables
+	public static bool isFemale;
+	public static bool isMale;
+
 	public static bool characterCreated = false;
 	public static bool characterIsBeingCreated = true;
 	public static bool genderSelected = false;
@@ -12,21 +43,13 @@ public class CharacterCreation : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		characterCreated = GameSaveLoad.room1CharacterCreatedSaveLoad;
-		isFemale = GameSaveLoad.room1IsFemaleSaveLoad;
-		isMale = GameSaveLoad.room1IsMaleSaveLoad;
+
+		raceBackgroundPanel.enabled = false;
+		raceButtonHuman.enabled = false;
+		raceButtonHumanText.enabled = false;
 		characterIsBeingCreated = true;
 		if (characterCreated == true) {
-			maleButtonBackground.enabled = false;
-			maleButtonText.enabled = false;
-			femaleButtonBackground.enabled = false;
-			femaleButtonText.enabled = false;
 
-			
-			characterCreationGenderSelectionBackground.enabled = false;
-			characterCreationGenderSelectionCancelButton.enabled = false;
-			characterCreationGenderSelectionCancelButtonText.enabled = false;
-			characterCreationGenderSelectionSelectAGenderText.enabled = false;
 			characterIsBeingCreated = false;
 			if (isFemale == true) {
 				IsFemale ();
@@ -47,30 +70,26 @@ public class CharacterCreation : MonoBehaviour {
 	public void IsFemale()
 	{
 		isFemale = true;
-		maleButtonBackground.enabled = false;
-		maleButtonText.enabled = false;
-		femaleButtonBackground.enabled = false;
-		femaleButtonText.enabled = false;
 		Instantiate(femaleResident);
-		characterCreationGenderSelectionBackground.enabled = false;
-		characterCreationGenderSelectionCancelButton.enabled = false;
-		characterCreationGenderSelectionCancelButtonText.enabled = false;
-		characterCreationGenderSelectionSelectAGenderText.enabled = false;
 		genderSelected = true;
 	}
 	
 	public void IsMale()
 	{
 		isMale = true;
-		maleButtonBackground.enabled = false;
-		maleButtonText.enabled = false;
-		femaleButtonBackground.enabled = false;
-		femaleButtonText.enabled = false;
 		Instantiate(maleResident);
-		characterCreationGenderSelectionBackground.enabled = false;
-		characterCreationGenderSelectionCancelButton.enabled = false;
-		characterCreationGenderSelectionCancelButtonText.enabled = false;
-		characterCreationGenderSelectionSelectAGenderText.enabled = false;
 		genderSelected = true;
+	}
+
+	public void raceButtonController()
+	{
+		raceBackgroundPanel.enabled = !raceBackgroundPanel.enabled;
+		raceButtonHuman.enabled = !raceButtonHuman.enabled;
+		raceButtonHumanText.enabled = !raceButtonHumanText.enabled;
+	}
+
+	public void genderButtonController()
+	{
+		genderBackgroundPanel.enabled = !genderBackgroundPanel.enabled;
 	}
 }
